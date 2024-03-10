@@ -9,7 +9,6 @@ import 'package:megga_posto_mobile/common/custom_elevated_button.dart';
 import 'package:megga_posto_mobile/common/custom_text_assignature.dart';
 import 'package:megga_posto_mobile/common/custom_text_field.dart';
 import 'package:megga_posto_mobile/common/static/custom_colors.dart';
-import 'package:megga_posto_mobile/controller/config_controller.dart';
 import 'package:megga_posto_mobile/service/dependencies.dart';
 
 import '../../common/custom_image.dart';
@@ -91,23 +90,33 @@ class ConfigPage extends StatelessWidget {
     }
 
     Widget _buildBody() {
-      return Column(
-        children: [
-          _buildArrowBack(),
-          CustomImage.customLogoTransparent(2.5),
-          const SizedBox(
-            height: 50,
+      return SingleChildScrollView(
+        child: SizedBox(
+          height: Get.size.height * 0.963,
+          child: Column(
+            children: [
+              _buildArrowBack(),
+              CustomImage.customLogoTransparent(2.5),
+              const SizedBox(
+                height: 50,
+              ),
+              Expanded(
+                child: CustomContainerTransparent(
+                  child: _buildContainerBody(),
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: CustomContainerTransparent(
-              child: _buildContainerBody(),
-            ),
-          ),
-        ],
+        ),
       );
     }
 
     return Scaffold(
-        body: CustomGradientBackground(child: SafeArea(child: _buildBody())));
+      body: CustomGradientBackground(
+        child: SafeArea(
+          child: _buildBody(),
+        ),
+      ),
+    );
   }
 }
